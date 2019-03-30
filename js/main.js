@@ -1,10 +1,10 @@
 window.onload = function(){
     //input
     var fullName = document.getElementById("fullname");
-    var phNo = document.getElementById("phno");
+    var phNo = document.getElementById("phone");
     var address = document.getElementById("address");
     var email = document.getElementById("email");
-    
+
     //buttons
     var addBtn = document.getElementById("add");
     var searchBtn = document.getElementById("search");
@@ -21,18 +21,18 @@ window.onload = function(){
     var addressBook = [];
 
     //localStorage["addcontact"]
-    function jsonStructure(fullName, phNo, address, email){
+    function jsonStructure(fullName, phone, address, email){
         this.fullName = fullName;
-        this.phNo = phNo;
+        this.phone = phone;
         this.address = address;
         this.email = email;
     }
 
     function addContact(){
-        var isNull = fullName.value!= "" && phNo.value!= "" && address.value!= "" && email.value!= "";
+        var isNull = fullName.value!= "" && phone.value!= "" && address.value!= "" && email.value!= "";
         if(isNull){
             //convert input to JSON structure
-            var obj = new jsonStructure(fullName.value, phNo.value, address.value, email.value);
+            var obj = new jsonStructure(fullName.value, phone.value, address.value, email.value);
             addressBook.push(obj);
             localStorage["addcontact"] = JSON.stringify(addressBook);
             clearForm();
@@ -67,15 +67,15 @@ window.onload = function(){
             for(var n in addressBook){
                 var str = '<div class="entry">';
                     str += '<div class="fullName"><p>' + addressBook[n].fullName + '</p></div>';
-                    str += '<div class="phone"><p>' + addressBook[n].phNo + '</p></div>';
+                    str += '<div class="phone"><p>' + addressBook[n].phone + '</p></div>';
                     str += '<div class="address"><p>' + addressBook[n].address + '</p></div>';
                     str += '<div class="email"><p>' + addressBook[n].email + '</p></div>';
                     str += '<div class="del"><a href="#" class="delbuttton" data-id="' + n + '">Delete</a></div>';
                     str += '</div>';
                 addContactDiv.innerHTML += str;
-            }  
-        } 
+            }
+        }
     }
 
     showAddressBook();
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+}
